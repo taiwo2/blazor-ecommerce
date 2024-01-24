@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using BlazorEcommerce.Server.Data;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BlazorEcommerce.Shared;
 
 namespace BlazorEcommerce.Server.Controllers
 {
