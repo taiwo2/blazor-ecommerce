@@ -1,4 +1,5 @@
 ﻿global using Blazor_Ecommerce.Shared;
+global using Blazor_Ecommerce.Client.Services.ProductService;
 using BlazorEcommerce.Server.Data;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
