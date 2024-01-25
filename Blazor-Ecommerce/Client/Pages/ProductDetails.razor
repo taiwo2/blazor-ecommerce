@@ -16,14 +16,14 @@ else
             }
             else
             {
-                <MudCarousel Class="mud-width-full" ItemsSource="@product.Images" Style="height: 200px;">
+                @* <MudCarousel Class="mud-width-full" ItemsSource="@product.Images" Style="height: 200px;">
                     <ItemTemplate>
                         <MudImage Src="@context.Data"></MudImage>>
                     </ItemTemplate>
-                </MudCarousel>
+                </MudCarousel> *@
             }
         </div>
-        <div class="media-body">
+        @* <div class="media-body">
             <h2 class="mb-0">@product.Title</h2>
             <p>@product.Description</p>
             @if (product.Variants != null && product.Variants.Count > 1)
@@ -52,7 +52,7 @@ else
             <button class="btn btn-primary" @onclick="AddToCart">
                 <i class="oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add to Cart
             </button>
-        </div>
+        </div> *@
     </div>
 
 }
@@ -77,28 +77,28 @@ else
         else
         {
             product = result.Data;
-            if (product.Variants.Count > 0)
+            @* if (product.Variants.Count > 0)
             {
                 currentTypeId = product.Variants[0].ProductTypeId;
-            }
+            } *@
         }
     }
 
-    private ProductVariant GetSelectedVariant()
+    @* private ProductVariant GetSelectedVariant()
     {
         var variant = product.Variants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
         return variant;
-    }
+    } *@
 
     private async Task AddToCart()
     {
-        var productVariant = GetSelectedVariant();
+        @* var productVariant = GetSelectedVariant();
         var cartItem = new CartItem
             {
                 ProductId = productVariant.ProductId,
                 ProductTypeId = productVariant.ProductTypeId
             };
 
-        await CartService.AddToCart(cartItem);
+        await CartService.AddToCart(cartItem); *@
     }
 }
