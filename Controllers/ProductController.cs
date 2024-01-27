@@ -1,16 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorEcommerce.Server.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ProductController : Controller
     {
-        public IActionResult Index()
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
         {
-            return View();
+            _productService = productService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProduct()
+        {
+            var result = await _productService.GetProductsAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("{productId}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
+        {
+            var result = await _productService.GetProductAsync(productId);
+            return Ok(result);
+        }
+
+         [HttpGet("category/{categoryUrl}")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProductsByCategory(string categoryUrl)
+        {
+            var result = await _productService.GetProductsByCategory(categoryUrl);
+            return Ok(result);
         }
     }
+
+    
 }
