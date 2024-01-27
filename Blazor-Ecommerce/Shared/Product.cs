@@ -26,7 +26,5 @@ namespace Blazor_Ecommerce.Shared
         public bool Editing { get; set; } = false;
         [NotMapped]
         public bool IsNew { get; set; } = false;
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { get; set; }
     }
 }

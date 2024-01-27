@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace BlazorEcommerce.Server.Services.CategoryService
 {
     public class CategoryService : ICategoryService
@@ -13,9 +15,9 @@ namespace BlazorEcommerce.Server.Services.CategoryService
 
         public async Task<ServiceResponse<List<Category>>> GetCategories()
         {
-            var categories = await _context.Categories
-                .Where(c => !c.Deleted && c.Visible)
-                .ToListAsync();
+            var categories = await _context.Categories.ToListAsync();
+                // .Where(c => !c.Deleted && c.Visible)
+                
             return new ServiceResponse<List<Category>>
             {
                 Data = categories
