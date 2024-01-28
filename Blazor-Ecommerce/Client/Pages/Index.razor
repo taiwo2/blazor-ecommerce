@@ -4,7 +4,14 @@
 @inject IProductService ProductService
 <PageTitle>My Shop</PageTitle>
 
-    <ProductList />
+   @if (SearchText == null && CategoryUrl == null)
+    {
+        <FeaturedProducts />
+    }
+    else
+    {
+        <ProductList />
+    }
 
 
 @code {
@@ -21,7 +28,7 @@
     {
         if (SearchText != null)
         {
-            await ProductService.SearchProducts(SearchText);
+            await ProductService.SearchProducts(SearchText, Page);
         }
         else
         {
