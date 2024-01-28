@@ -1,20 +1,31 @@
 ﻿@page "/"
+@page "/search/{searchText}"
 @page "/{categoryUrl}"
 @inject IProductService ProductService
 <PageTitle>My Shop</PageTitle>
 
-<ProductList/>
+    <ProductList />
+
 
 @code {
     [Parameter]
     public string? CategoryUrl { get; set; } = null;
 
+    [Parameter]
+    public string? SearchText { get; set; } = null;
 
     [Parameter]
     public int Page { get; set; } = 1;
 
     protected override async Task OnParametersSetAsync()
     {
-        await ProductService.GetProducts(CategoryUrl);
+        if (SearchText != null)
+        {
+            await ProductService.SearchProducts(SearchText);
+        }
+        else
+        {
+            await ProductService.GetProducts(CategoryUrl);
+        }
     }
 }
