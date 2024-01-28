@@ -57,11 +57,11 @@ namespace Blazor_Ecommerce.Client.Services.ProductService
             if (result != null && result.Data != null)
                 Products = result.Data;
 
-            // CurrentPage = 1;
-            // PageCount = 0;
+            CurrentPage = 1;
+            PageCount = 0;
 
-            // if (Products.Count == 0)
-            //     Message = "No products found";
+            if (Products.Count == 0)
+                Message = "No products found";
 
             ProductsChanged.Invoke();
         }

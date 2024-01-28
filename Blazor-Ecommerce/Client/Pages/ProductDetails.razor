@@ -1,6 +1,6 @@
 @page "/product/{id:int}"
 @inject IProductService ProductService
-@* @inject ICartService CartService *@
+@inject ICartService CartService
 
 @if (product == null)
 {
@@ -92,13 +92,13 @@ else
 
     private async Task AddToCart()
     {
-        @* var productVariant = GetSelectedVariant();
+        var productVariant = GetSelectedVariant();
         var cartItem = new CartItem
             {
                 ProductId = productVariant.ProductId,
                 ProductTypeId = productVariant.ProductTypeId
             };
 
-        await CartService.AddToCart(cartItem); *@
+        await CartService.AddToCart(cartItem);
     }
 }
