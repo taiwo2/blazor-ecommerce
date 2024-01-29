@@ -60,12 +60,7 @@ namespace BlazorEcommerce.Client.Services.CartService
             return cart;
         }
 
-        public Task<List<CartProductResponse>> GetCartProducts()
-        {
-            throw new NotImplementedException();
-        }
-
-
+       
 
         // public async Task GetCartItemsCount()
         // {
@@ -85,25 +80,25 @@ namespace BlazorEcommerce.Client.Services.CartService
         //     OnChange.Invoke();
         // }
 
-        // public async Task<List<CartProductResponse>> GetCartProducts()
-        // {
-        //     if (await _authService.IsUserAuthenticated())
-        //     {
-        //         var response = await _http.GetFromJsonAsync<ServiceResponse<List<CartProductResponse>>>("api/cart");
-        //         return response.Data;
-        //     }
-        //     else
-        //     {
-        //         var cartItems = await _localStorage.GetItemAsync<List<CartItem>>("cart");
-        //         if (cartItems == null)
-        //             return new List<CartProductResponse>();
-        //         var response = await _http.PostAsJsonAsync("api/cart/products", cartItems);
-        //         var cartProducts =
-        //             await response.Content.ReadFromJsonAsync<ServiceResponse<List<CartProductResponse>>>();
-        //         return cartProducts.Data;
-        //     }
+        public async Task<List<CartProductResponse>> GetCartProducts()
+        {
+            // if (await _authService.IsUserAuthenticated())
+            // {
+            //     var response = await _http.GetFromJsonAsync<ServiceResponse<List<CartProductResponse>>>("api/cart");
+            //     return response.Data;
+            // }
+            // else
+            // {
+                var cartItems = await _localStorage.GetItemAsync<List<CartItem>>("cart");
+                if (cartItems == null)
+                    return new List<CartProductResponse>();
+                var response = await _http.PostAsJsonAsync("api/cart/products", cartItems);
+                var cartProducts =
+                    await response.Content.ReadFromJsonAsync<ServiceResponse<List<CartProductResponse>>>();
+                return cartProducts.Data;
+            // }
 
-        // }
+        }
 
         // public async Task RemoveProductFromCart(int productId, int productTypeId)
         // {
